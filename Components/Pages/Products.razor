@@ -1,0 +1,55 @@
+@page "/products"
+@rendermode InteractiveServer
+@inject IProductService ProductService
+@inject ICategoryService CategoryService
+@inject ICartService CartService
+@inject ICurrentUserService CurrentUser
+@inject NavigationManager Nav
+
+<PageTitle>Коллекция — JewelStore</PageTitle>
+
+<div class="text-center my-5">
+    <div class="js-ornament mb-3">◆ ◆ ◆</div>
+    <h1 class="display-5 fw-light text-js" style="letter-spacing: 6px;">КОЛЛЕКЦИЯ</h1>
+    <small class="text-muted fst-italic">— выберите своё совершенство —</small>
+</div>
+
+<div class="d-flex justify-content-center gap-4 mb-5">
+    <button class="js-filter-link @(CollectionId == 0 ? "active" : "")" @onclick="@(() => OpenCollection(0))">ВСЕ</button>
+    @if (collections != null) { foreach (var c in collections) { <button class="js-filter-link @(CollectionId == c.Id ? "active" : "")" @onclick="@(() => OpenCollection(c.Id))">@c.Name.ToUpper()</button> } }
+</div>
+
+@if (jewels == null) { <p class="text-center"><em>Загрузка...</em></p> }
+else if (!jewels.Any()) { <div class="alert alert-info">Коллекция пока пуста.</div> }
+else
+{
+    <div class="row g-5 px-4">
+        @foreach (var p in jewels)
+        {
+            <div class="col-md-6 col-lg-4">
+                <div class="js-jewel-card text-center">
+                    @if (!string.IsNullOrEmpty(p.ImageUrl)) { <img src="@p.ImageUrl" class="js-jewel-img" /> }
+                    <small class="d-block text-muted mt-3 mb-1" style="letter-spacing: 3px;">@p.Category?.Name.ToUpper()</small>
+                    <h5 class="fst-italic fw-light">@p.Name</h5>
+                    <div class="js-line my-3"></div>
+                    <strong class="text-js fs-5 d-block mb-3">@p.Price.ToString("N0") ₽</strong>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <a class="btn btn-outline-dark btn-sm px-3" href="@($"/products/{p.Id}")">ДЕТАЛИ</a>
+                        <button class="btn js-btn-gold btn-sm px-3" @onclick="() => OrderJewel(p.Id)" disabled="@(p.Stock == 0)">ЗАКАЗАТЬ</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private IEnumerable<Models.Product>? jewels;
+    private IEnumerable<Models.Category>? collections;
+    private int CollectionId { get; set; } = 0;
+
+    protected override async Task OnInitializedAsync() { collections = await CategoryService.GetAllAsync(); await LoadJewels(); }
+    private async Task OpenCollection(int catId) { CollectionId = catId; await LoadJewels(); }
+    private async Task LoadJewels() { jewels = CollectionId == 0 ? await ProductService.GetAllAsync() : await ProductService.GetByCategoryAsync(CollectionId); }
+    private async Task OrderJewel(int id) { var c = await CurrentUser.GetOrCreateGuestVisitorAsync(); await CartService.AddToCartAsync(c.Id, id); Nav.NavigateTo("/cart"); }
+}

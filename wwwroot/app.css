@@ -1,0 +1,36 @@
+html, body { font-family: "Cormorant Garamond", "Times New Roman", serif; background-color: #1a1a1a; color: #f5e6c4; }
+.page { background-color: #1a1a1a; }
+.js-nav { background-color: #0a0a0a; padding-top: 0.5rem; }
+.js-divider { height: 2px; background: linear-gradient(90deg, transparent, #c9a227, transparent); }
+.js-link { color: #f5e6c4 !important; letter-spacing: 3px; padding: 0.5rem 0; border-bottom: 2px solid transparent; font-weight: 600; }
+.js-link:hover, .js-link.active { color: #c9a227 !important; border-bottom-color: #c9a227; }
+.js-brand { color: #c9a227 !important; text-decoration: none; font-size: 1.7rem; letter-spacing: 6px; font-weight: 600; }
+.js-brand i { color: #c9a227; }
+.js-hero { background-color: #0a0a0a; }
+.js-footer { background-color: #0a0a0a; border-top: 2px solid #c9a227; }
+.text-js { color: #c9a227 !important; }
+.js-btn-gold { background-color: #c9a227; border: 2px solid #c9a227; color: #1a1a1a; letter-spacing: 3px; font-weight: 700; }
+.js-btn-gold:hover { background-color: #1a1a1a; color: #c9a227; border-color: #c9a227; }
+.btn-outline-dark { letter-spacing: 3px; color: #f5e6c4; border-color: #f5e6c4; background-color: transparent; }
+.btn-outline-dark:hover { background-color: #f5e6c4; color: #1a1a1a; }
+.btn-primary, .btn-success { background-color: #c9a227; border-color: #c9a227; color: #1a1a1a; letter-spacing: 2px; font-weight: 700; }
+.btn-primary:hover, .btn-success:hover { background-color: #b08a1f; color: #1a1a1a; border-color: #b08a1f; }
+.bg-primary { background-color: #1a1a1a !important; }
+.text-primary { color: #c9a227 !important; }
+.text-muted { color: #b8a884 !important; }
+.text-dark, .text-body { color: #f5e6c4 !important; }
+.js-ornament { color: #c9a227; letter-spacing: 1.2rem; font-size: 0.7rem; }
+.js-jewel-card { background-color: #2c2520; padding: 2.5rem 1.5rem; transition: all 0.3s ease; border: 1px solid #c9a227; }
+.js-jewel-card:hover { box-shadow: 0 1rem 2rem rgba(201,162,39,0.5); transform: translateY(-3px); background-color: #3a2e1a; }
+.js-jewel-card h5 { color: #f5e6c4; }
+.js-jewel-img { width: 70%; height: 220px; object-fit: contain; margin: 0 auto; display: block; background-color: #fffef9; padding: 1rem; border-radius: 0.5rem; }
+.js-line { width: 40px; height: 1px; background-color: #c9a227; margin: 0 auto; }
+.js-filter-link { background: transparent; border: 0; color: #f5e6c4; letter-spacing: 4px; font-size: 0.85rem; padding: 0.4rem 0.8rem; border-bottom: 2px solid transparent; font-weight: 600; }
+.js-filter-link:hover { color: #c9a227; }
+.js-filter-link.active { color: #c9a227; border-bottom-color: #c9a227; }
+.navbar-brand { letter-spacing: 6px; }
+.alert-info { background-color: #2c2520; color: #f5e6c4; border-color: #c9a227; }
+.card { background-color: #2c2520; color: #f5e6c4; border-color: #c9a227; }
+.border-end { border-color: #c9a227 !important; }
+#blazor-error-ui { background: #ffc107; bottom: 0; box-shadow: 0 -1px 2px rgba(0,0,0,0.2); display: none; left: 0; padding: 0.6rem 1.25rem 0.7rem 1.25rem; position: fixed; width: 100%; z-index: 1000; }
+#blazor-error-ui .dismiss { cursor: pointer; position: absolute; right: 0.75rem; top: 0.5rem; }
